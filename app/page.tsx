@@ -73,7 +73,7 @@ export default function Home() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-black text-lg hover:text-gray-500 transition-colors" 
-                style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 300 }}
+                style={{ fontFamily: "'Neue Singular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: 300 }}
               >
                 @viewmarkco
               </a>
@@ -86,13 +86,13 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 p-4 hidden md:flex items-center gap-2 pointer-events-auto">
               <span 
                 className="text-black text-lg" 
-                style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 500 }}
+                style={{ fontFamily: "'Neue Singular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: 500 }}
               >
                 Viewmark
               </span>
               <span 
                 className="text-gray-500 text-lg" 
-                style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 300 }}
+                style={{ fontFamily: "'Neue Singular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: 300 }}
               >
                 Put your ads on viral clips
               </span>
@@ -108,7 +108,7 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="roll-button text-white px-3.5 py-1.5 rounded-full text-lg border-0 relative z-10 inline-block cursor-pointer"
-                  style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 400 }}
+                  style={{ fontFamily: "'Neue Singular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: 400 }}
                 >
                   <span className="roll-text-placeholder">Get early access</span>
                   <span className="roll-text-wrapper">
