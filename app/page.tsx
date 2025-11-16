@@ -5,14 +5,15 @@ import { useEffect } from 'react';
 
 export default function Home() {
   useEffect(() => {
-    // Prevent bottom overscroll on mobile while allowing pull-to-refresh at top
+    // Prevent bottom overscroll and pull-to-refresh overflow on mobile
     if (typeof window !== 'undefined' && window.innerWidth <= 767) {
       let lastTouchY = 0;
-      let scrollY = 0;
+      let isAtTop = false;
 
       const handleTouchStart = (e: TouchEvent) => {
         lastTouchY = e.touches[0].clientY;
-        scrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+        const currentScrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+        isAtTop = currentScrollY <= 0;
       };
 
       const handleTouchMove = (e: TouchEvent) => {
@@ -23,7 +24,13 @@ export default function Home() {
         const clientHeight = document.documentElement.clientHeight || window.innerHeight;
         const isAtBottom = currentScrollY + clientHeight >= scrollHeight - 1;
         const isScrollingDown = deltaY < 0;
+        const isScrollingUp = deltaY > 0;
 
+        // Prevent pull-to-refresh (scrolling down when at top)
+        if (isAtTop && isScrollingUp) {
+          e.preventDefault();
+        }
+        
         // Prevent scrolling down past the bottom
         if (isAtBottom && isScrollingDown) {
           e.preventDefault();
@@ -67,7 +74,7 @@ export default function Home() {
         {/* Main content area - positioned above background */}
         <div className="relative z-10 w-full h-full">
           {/* Fixed Header - invisible wrapper for mobile, absolute for desktop */}
-          <header className="fixed top-0 left-0 right-0 z-20 pointer-events-none md:absolute md:pointer-events-auto md:top-0 md:left-0 md:right-0">
+          <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none md:absolute md:z-20 md:pointer-events-auto md:top-0 md:left-0 md:right-0">
             {/* Top right corner text */}
             <div className="absolute top-0 right-0 p-4 pointer-events-auto">
               <a 
@@ -83,7 +90,7 @@ export default function Home() {
           </header>
 
           {/* Fixed Footer - invisible wrapper for mobile, absolute for desktop */}
-          <footer className="fixed bottom-0 left-0 right-0 z-20 pointer-events-none md:absolute md:pointer-events-auto md:bottom-0 md:left-0 md:right-0">
+          <footer className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none md:absolute md:z-20 md:pointer-events-auto md:bottom-0 md:left-0 md:right-0">
             {/* Bottom left corner text */}
             <div className="absolute bottom-0 left-0 p-4 hidden md:flex items-center gap-2 pointer-events-auto">
               <span 

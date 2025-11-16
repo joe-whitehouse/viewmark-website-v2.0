@@ -22,13 +22,16 @@ body {
   overflow-x: hidden;
 }
 
-/* Mobile scroll behavior - allow pull-to-refresh and scrolling above footer, prevent scrolling below */
+/* Mobile scroll behavior - prevent pull-to-refresh overflow from covering header/footer */
 @media (max-width: 767px) {
   html {
     height: 100%;
     height: 100dvh;
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
+    /* Prevent pull-to-refresh white overflow */
+    overscroll-behavior-y: none;
+    overscroll-behavior-x: none;
   }
   
   body {
@@ -38,14 +41,22 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
+    /* Prevent pull-to-refresh white overflow */
+    overscroll-behavior-y: none;
     overscroll-behavior-x: none;
-    /* Ensure background color matches to hide any potential overscroll areas */
+    /* Ensure background color matches */
     background-color: var(--bg-color);
     position: relative;
   }
   
-  /* Prevent any black bars from showing during overscroll */
+  /* Ensure header and footer stay visible above everything */
+  header,
+  footer {
+    background-color: transparent;
+    will-change: transform;
+  }
+  
+  /* Prevent any overscroll areas from showing */
   body::before {
     content: '';
     position: fixed;
