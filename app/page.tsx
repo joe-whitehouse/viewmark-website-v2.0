@@ -1,8 +1,45 @@
 'use client';
 
 import Script from 'next/script';
+import { useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    // Prevent bottom overscroll on mobile while allowing pull-to-refresh at top
+    if (typeof window !== 'undefined' && window.innerWidth <= 767) {
+      let lastTouchY = 0;
+      let scrollY = 0;
+
+      const handleTouchStart = (e: TouchEvent) => {
+        lastTouchY = e.touches[0].clientY;
+        scrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+      };
+
+      const handleTouchMove = (e: TouchEvent) => {
+        const touchY = e.touches[0].clientY;
+        const deltaY = touchY - lastTouchY;
+        const currentScrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight || window.innerHeight;
+        const isAtBottom = currentScrollY + clientHeight >= scrollHeight - 1;
+        const isScrollingDown = deltaY < 0;
+
+        // Prevent scrolling down past the bottom
+        if (isAtBottom && isScrollingDown) {
+          e.preventDefault();
+        }
+      };
+
+      document.addEventListener('touchstart', handleTouchStart, { passive: true });
+      document.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+      return () => {
+        document.removeEventListener('touchstart', handleTouchStart);
+        document.removeEventListener('touchmove', handleTouchMove);
+      };
+    }
+  }, []);
+
   return (
     <>
       <Script
