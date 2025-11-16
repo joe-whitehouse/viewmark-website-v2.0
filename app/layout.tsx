@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Viewmark",
+  title: "Viewmark — Put your ads on viral clips",
   description: "Put your ads on viral clips",
   icons: {
     icon: [
