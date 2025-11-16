@@ -22,9 +22,10 @@ body {
   overflow-x: hidden;
 }
 
-/* Mobile scroll behavior - allow pull-to-refresh while keeping header/footer visible */
+/* Mobile - allow natural pull-to-refresh, no scroll restrictions */
 @media (max-width: 767px) {
-  html {
+  html,
+  body {
     height: 100%;
     height: 100dvh;
     overflow: hidden;
@@ -34,47 +35,10 @@ body {
     overscroll-behavior-x: none;
   }
   
-  body {
-    height: 100%;
-    height: 100dvh;
-    max-height: 100dvh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    /* Allow pull-to-refresh, prevent bottom overscroll */
-    overscroll-behavior-y: auto;
-    overscroll-behavior-x: none;
-    /* Ensure background color matches */
-    background-color: var(--bg-color);
-    position: relative;
-  }
-  
-  /* Ensure header and footer stay visible above everything */
+  /* Ensure header and footer stay visible */
   header,
   footer {
     background-color: transparent;
-    will-change: transform;
-  }
-  
-  /* Prevent any overscroll areas from showing */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--bg-color);
-    pointer-events: none;
-    z-index: -1;
-  }
-  
-  /* Ensure main page container doesn't exceed viewport */
-  #__next,
-  [data-nextjs-scroll-focus-boundary] {
-    height: 100%;
-    max-height: 100dvh;
-    overflow: hidden;
   }
 }
 
@@ -143,8 +107,6 @@ body {
   background-color: #0F0F11;
   transition: background-color 0.3s ease, transform 0.15s ease;
   transform: scale(1);
-  font-family: 'Neue Singular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  font-weight: 400 !important;
 }
 
 .roll-button:hover {
@@ -198,17 +160,6 @@ body {
 @media (max-width: 767px) {
   .roll-button:hover .roll-text-wrapper {
     transform: translateY(-0.875rem);
-  }
-  
-  /* Ensure font is applied on mobile */
-  .roll-button {
-    font-family: 'Neue Singular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    font-weight: 400 !important;
-  }
-  
-  .roll-button * {
-    font-family: 'Neue Singular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    font-weight: 400 !important;
   }
 }
 
