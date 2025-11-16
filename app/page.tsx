@@ -1,8 +1,59 @@
 'use client';
 
 import Script from 'next/script';
+import { useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    // Prevent bottom overscroll bounce while allowing pull-to-refresh at top
+    if (typeof window !== 'undefined' && window.innerWidth <= 767) {
+      let lastTouchY = 0;
+      let isScrolling = false;
+
+      const handleTouchStart = (e: TouchEvent) => {
+        lastTouchY = e.touches[0].clientY;
+        isScrolling = false;
+      };
+
+      const handleTouchMove = (e: TouchEvent) => {
+        const touchY = e.touches[0].clientY;
+        const deltaY = touchY - lastTouchY;
+        const currentScrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight || window.innerHeight;
+        const isAtBottom = currentScrollY + clientHeight >= scrollHeight - 1;
+        const isScrollingDown = deltaY < 0;
+        const isScrollingUp = deltaY > 0;
+
+        // Allow pull-to-refresh at top (scrolling up when at top)
+        const isAtTop = currentScrollY <= 0;
+        if (isAtTop && isScrollingUp) {
+          return; // Allow pull-to-refresh
+        }
+
+        // Prevent scrolling down past the bottom
+        if (isAtBottom && isScrollingDown) {
+          e.preventDefault();
+          isScrolling = true;
+        }
+      };
+
+      const handleTouchEnd = () => {
+        isScrolling = false;
+      };
+
+      document.addEventListener('touchstart', handleTouchStart, { passive: true });
+      document.addEventListener('touchmove', handleTouchMove, { passive: false });
+      document.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+      return () => {
+        document.removeEventListener('touchstart', handleTouchStart);
+        document.removeEventListener('touchmove', handleTouchMove);
+        document.removeEventListener('touchend', handleTouchEnd);
+      };
+    }
+  }, []);
+
   return (
     <>
       <Script
