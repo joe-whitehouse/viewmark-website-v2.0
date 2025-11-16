@@ -118,6 +118,14 @@ body {
 
 @font-face {
   font-family: 'Neue Singular';
+  src: url('/fonts/neueSingular-H-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Singular';
   src: url('/fonts/neueSingular-H-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
@@ -133,11 +141,16 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #0F0F11;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+  transform: scale(1);
 }
 
 .roll-button:hover {
   background-color: #1a1a1a;
+}
+
+.roll-button:active {
+  transform: scale(0.97);
 }
 
 .roll-text-placeholder {
@@ -177,6 +190,13 @@ body {
 
 .roll-button:hover .roll-text-wrapper {
   transform: translateY(calc(-0.875rem - 1.75rem - 0.3rem));
+}
+
+/* Disable roll animation on mobile - only show static text */
+@media (max-width: 767px) {
+  .roll-button:hover .roll-text-wrapper {
+    transform: translateY(-0.875rem);
+  }
 }
 
 .button-blob {

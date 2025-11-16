@@ -108,7 +108,7 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="roll-button text-white px-3.5 py-1.5 rounded-full text-lg border-0 relative z-10 inline-block cursor-pointer"
-                  style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 300 }}
+                  style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 400 }}
                 >
                   <span className="roll-text-placeholder">Get early access</span>
                   <span className="roll-text-wrapper">
