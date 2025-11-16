@@ -14,7 +14,7 @@ export default function Home() {
           `,
         }}
       />
-      <div className="relative w-full h-screen page-background">
+      <div className="relative w-full h-screen page-background overflow-hidden md:overflow-visible">
         {/* Unicorn Studio Interactive Background Container - positioned behind all content */}
         <div 
           id="unicorn-studio-background"
@@ -29,54 +29,62 @@ export default function Home() {
         
         {/* Main content area - positioned above background */}
         <div className="relative z-10 w-full h-full">
-          {/* Top right corner text */}
-          <div className="absolute top-0 right-0 p-4">
-            <a 
-              href="https://x.com/viewmarkco" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-black text-lg hover:text-gray-500 transition-colors" 
-              style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 300 }}
-            >
-              @viewmarkco
-            </a>
-          </div>
-          {/* Bottom left corner text */}
-          <div className="absolute bottom-0 left-0 p-4 hidden md:flex items-center gap-2">
-            <span 
-              className="text-black text-lg" 
-              style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 500 }}
-            >
-              Viewmark
-            </span>
-            <span 
-              className="text-gray-500 text-lg" 
-              style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 300 }}
-            >
-              Put your ads on viral clips
-            </span>
-          </div>
-          {/* Bottom right corner button - left on mobile, right on desktop */}
-          <div className="absolute bottom-0 left-0 md:left-auto md:right-0 p-4">
-            <div className="relative">
-              {/* Gradient blobs behind button */}
-              <div className="button-blob button-blob-1"></div>
-              <div className="button-blob button-blob-2"></div>
+          {/* Fixed Header - invisible wrapper for mobile, absolute for desktop */}
+          <header className="fixed top-0 left-0 right-0 z-20 pointer-events-none md:absolute md:pointer-events-auto md:top-0 md:left-0 md:right-0">
+            {/* Top right corner text */}
+            <div className="absolute top-0 right-0 p-4 pointer-events-auto">
               <a 
-                href="https://form.typeform.com/to/nT8Bw9sw"
-                target="_blank"
+                href="https://x.com/viewmarkco" 
+                target="_blank" 
                 rel="noopener noreferrer"
-                className="roll-button text-white px-3.5 py-1.5 rounded-full text-lg border-0 relative z-10 inline-block cursor-pointer"
+                className="text-black text-lg hover:text-gray-500 transition-colors" 
                 style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 300 }}
               >
-                <span className="roll-text-placeholder">Get early access</span>
-                <span className="roll-text-wrapper">
-                  <span className="roll-text-item">Get early access</span>
-                  <span className="roll-text-item">Join our waitlist</span>
-                </span>
+                @viewmarkco
               </a>
             </div>
-          </div>
+          </header>
+
+          {/* Fixed Footer - invisible wrapper for mobile, absolute for desktop */}
+          <footer className="fixed bottom-0 left-0 right-0 z-20 pointer-events-none md:absolute md:pointer-events-auto md:bottom-0 md:left-0 md:right-0">
+            {/* Bottom left corner text */}
+            <div className="absolute bottom-0 left-0 p-4 hidden md:flex items-center gap-2 pointer-events-auto">
+              <span 
+                className="text-black text-lg" 
+                style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 500 }}
+              >
+                Viewmark
+              </span>
+              <span 
+                className="text-gray-500 text-lg" 
+                style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 300 }}
+              >
+                Put your ads on viral clips
+              </span>
+            </div>
+            {/* Bottom right corner button - left on mobile, right on desktop */}
+            <div className="absolute bottom-0 left-0 md:left-auto md:right-0 p-4 pointer-events-auto">
+              <div className="relative">
+                {/* Gradient blobs behind button */}
+                <div className="button-blob button-blob-1"></div>
+                <div className="button-blob button-blob-2"></div>
+                <a 
+                  href="https://form.typeform.com/to/nT8Bw9sw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="roll-button text-white px-3.5 py-1.5 rounded-full text-lg border-0 relative z-10 inline-block cursor-pointer"
+                  style={{ fontFamily: "'Neue Singular', sans-serif", fontWeight: 300 }}
+                >
+                  <span className="roll-text-placeholder">Get early access</span>
+                  <span className="roll-text-wrapper">
+                    <span className="roll-text-item">Get early access</span>
+                    <span className="roll-text-item">Join our waitlist</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </footer>
+
           {/* Your content goes here */}
         </div>
       </div>

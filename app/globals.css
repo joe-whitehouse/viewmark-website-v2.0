@@ -19,6 +19,45 @@
 html,
 body {
   background-color: var(--bg-color);
+  overflow-x: hidden;
+}
+
+/* Mobile scroll behavior - allow pull-to-refresh and scrolling above footer, prevent scrolling below */
+@media (max-width: 767px) {
+  html {
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    min-height: 100%;
+    position: relative;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+  
+  /* Prevent scrolling past footer */
+  body::after {
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+  }
+}
+
+/* Desktop - no scrolling needed */
+@media (min-width: 768px) {
+  html,
+  body {
+    overflow: hidden;
+    height: 100vh;
+  }
 }
 
 .page-background {
