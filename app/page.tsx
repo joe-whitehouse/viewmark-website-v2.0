@@ -96,8 +96,8 @@ export default function Home() {
             </div>
           </header>
 
-          {/* Fixed Footer - invisible wrapper for mobile, absolute for desktop */}
-          <footer className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none md:absolute md:z-20 md:pointer-events-auto md:bottom-0 md:left-0 md:right-0">
+          {/* Fixed Footer - sticky at top layer on mobile, absolute for desktop */}
+          <footer className="fixed bottom-0 left-0 right-0 z-[9999] pointer-events-none md:absolute md:z-20 md:pointer-events-auto md:bottom-0 md:left-0 md:right-0 footer-sticky">
             {/* Bottom left corner text */}
             <div className="absolute bottom-0 left-0 p-4 hidden md:flex items-center gap-2 pointer-events-auto">
               <span 
@@ -114,7 +114,7 @@ export default function Home() {
               </span>
             </div>
             {/* Bottom right corner button - left on mobile, right on desktop */}
-            <div className="absolute bottom-0 left-0 md:left-auto md:right-0 p-4 pointer-events-auto">
+            <div className="absolute bottom-0 left-0 md:left-auto md:right-0 p-4 pointer-events-auto z-[10000]">
               <div className="relative">
                 {/* Gradient blobs behind button */}
                 <div className="button-blob button-blob-1"></div>
