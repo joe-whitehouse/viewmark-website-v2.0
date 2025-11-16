@@ -5,15 +5,12 @@ import { useEffect } from 'react';
 
 export default function Home() {
   useEffect(() => {
-    // Prevent bottom overscroll and pull-to-refresh overflow on mobile
+    // Prevent bottom overscroll on mobile (allow pull-to-refresh at top)
     if (typeof window !== 'undefined' && window.innerWidth <= 767) {
       let lastTouchY = 0;
-      let isAtTop = false;
 
       const handleTouchStart = (e: TouchEvent) => {
         lastTouchY = e.touches[0].clientY;
-        const currentScrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
-        isAtTop = currentScrollY <= 0;
       };
 
       const handleTouchMove = (e: TouchEvent) => {
@@ -24,14 +21,8 @@ export default function Home() {
         const clientHeight = document.documentElement.clientHeight || window.innerHeight;
         const isAtBottom = currentScrollY + clientHeight >= scrollHeight - 1;
         const isScrollingDown = deltaY < 0;
-        const isScrollingUp = deltaY > 0;
 
-        // Prevent pull-to-refresh (scrolling down when at top)
-        if (isAtTop && isScrollingUp) {
-          e.preventDefault();
-        }
-        
-        // Prevent scrolling down past the bottom
+        // Only prevent scrolling down past the bottom (allow pull-to-refresh at top)
         if (isAtBottom && isScrollingDown) {
           e.preventDefault();
         }

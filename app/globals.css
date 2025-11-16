@@ -22,15 +22,15 @@ body {
   overflow-x: hidden;
 }
 
-/* Mobile scroll behavior - prevent pull-to-refresh overflow from covering header/footer */
+/* Mobile scroll behavior - allow pull-to-refresh while keeping header/footer visible */
 @media (max-width: 767px) {
   html {
     height: 100%;
     height: 100dvh;
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
-    /* Prevent pull-to-refresh white overflow */
-    overscroll-behavior-y: none;
+    /* Allow pull-to-refresh */
+    overscroll-behavior-y: auto;
     overscroll-behavior-x: none;
   }
   
@@ -41,8 +41,8 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    /* Prevent pull-to-refresh white overflow */
-    overscroll-behavior-y: none;
+    /* Allow pull-to-refresh, prevent bottom overscroll */
+    overscroll-behavior-y: auto;
     overscroll-behavior-x: none;
     /* Ensure background color matches */
     background-color: var(--bg-color);
