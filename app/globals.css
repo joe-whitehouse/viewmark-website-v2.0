@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color: #F5F7FA;
+  --text-black: #0F0F11;
+  --text-gray: #A7B2BD;
+}
+
+.text-black {
+  color: var(--text-black);
+}
+
+.text-gray-500 {
+  color: var(--text-gray);
+}
+
+html,
+body {
+  background-color: var(--bg-color);
+}
+
+.page-background {
+  background-color: var(--bg-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #0F0F11;
+    --text-black: #F5F7FA;
+    --text-gray: #A7B2BD;
+  }
+  
+  .roll-button {
+    background-color: #F5F7FA !important;
+    color: #0F0F11 !important;
+  }
+  
+  .roll-button:hover {
+    background-color: #d1d5db !important;
+  }
+}
+
+@font-face {
+  font-family: 'Neue Singular';
+  src: url('/fonts/neueSingular-H-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Singular';
+  src: url('/fonts/neueSingular-H-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.roll-button {
+  position: relative;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0F0F11;
+  transition: background-color 0.3s ease;
+}
+
+.roll-button:hover {
+  background-color: #1a1a1a;
+}
+
+.roll-text-placeholder {
+  visibility: hidden;
+  height: 1.75rem;
+  line-height: 1.75rem;
+  white-space: nowrap;
+}
+
+.roll-text-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.3rem;
+  transform: translateY(-0.875rem);
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+}
+
+.roll-text-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  height: 1.75rem;
+  line-height: 1.75rem;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.roll-button:hover .roll-text-wrapper {
+  transform: translateY(calc(-0.875rem - 1.75rem - 0.3rem));
+}
+
+.button-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(12px);
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.button-blob-1 {
+  width: 30px;
+  height: 30px;
+  background: #00F3D4;
+  top: 50%;
+  left: 35px;
+  transform: translateY(-50%);
+}
+
+.button-blob-2 {
+  width: 25px;
+  height: 25px;
+  background: #FFE70A;
+  top: 50%;
+  right: 35px;
+  transform: translateY(-50%);
+}
+
