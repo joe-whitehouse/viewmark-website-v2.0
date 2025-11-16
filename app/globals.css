@@ -143,6 +143,8 @@ body {
   background-color: #0F0F11;
   transition: background-color 0.3s ease, transform 0.15s ease;
   transform: scale(1);
+  font-family: 'Neue Singular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 400 !important;
 }
 
 .roll-button:hover {
@@ -196,6 +198,17 @@ body {
 @media (max-width: 767px) {
   .roll-button:hover .roll-text-wrapper {
     transform: translateY(-0.875rem);
+  }
+  
+  /* Ensure font is applied on mobile */
+  .roll-button {
+    font-family: 'Neue Singular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-weight: 400 !important;
+  }
+  
+  .roll-button * {
+    font-family: 'Neue Singular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-weight: 400 !important;
   }
 }
 
